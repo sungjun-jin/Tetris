@@ -10,11 +10,13 @@ public class Stage extends View {
 
     float widthUnit;
     float heightUnit;
+    Preview preview;
 
     public Stage(Context context, float widthUnit, float heightUnit) {
         super(context);
         this.widthUnit = widthUnit;
         this.heightUnit = heightUnit;
+        preview = new Preview(context);
     }
 
     int stageMap[][] = {
@@ -42,16 +44,6 @@ public class Stage extends View {
 
     };
 
-    int previewMap[][] = {
-
-            {0, 0, 0, 0, 0, 9},
-            {0, 0, 0, 0, 0, 9},
-            {0, 0, 0, 0, 0, 9},
-            {0, 0, 0, 0, 0, 9},
-            {9, 9, 9, 9, 9, 9},
-
-    };
-
     //stageMap과 previewMap 합치기
     int[][] allMap = new int[Const.heightGridCount][Const.widthGridCount];
 
@@ -67,17 +59,16 @@ public class Stage extends View {
             }
         }
         //previewMap 옮기기
-        for (int y = 0; y < previewMap.length; y++) {
+        for (int y = 0; y < preview.previewMap.length; y++) {
             //stageMap이 끝난 x좌표부터 옮겨준다, y축은 그대로 0
             for (int x = stageMap[0].length; x < allMap[0].length; x++) {
 
-                allMap[y][x] = previewMap[y][x - stageMap[0].length];
+                allMap[y][x] = preview.previewMap[y][x - stageMap[0].length];
             }
         }
     }
 
-    @Override
-    protected void onDraw(Canvas canvas) {
+    public void drawAllMap(Canvas canvas) {
 
         //Stage와 Preview를 전체 맵에 옮겨주는 함수
         setAllmap();
@@ -139,5 +130,10 @@ public class Stage extends View {
                 }
             }
         }
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        drawAllMap(canvas);
     }
 }
