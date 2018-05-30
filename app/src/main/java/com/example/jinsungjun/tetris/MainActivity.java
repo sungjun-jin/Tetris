@@ -7,9 +7,6 @@ import android.widget.FrameLayout;
 
 public class MainActivity extends AppCompatActivity {
 
-    int widthGridCount = 18;
-    int heightGridCount = 20;
-
     float widthPixels = 0;
     float heightPixels = 0;
 
@@ -31,12 +28,11 @@ public class MainActivity extends AppCompatActivity {
         widthPixels = metrics.widthPixels;
         heightPixels = metrics.heightPixels;
 
-        widthUnit = widthPixels / widthGridCount;
-        heightUnit = heightPixels / heightGridCount;
+        widthUnit = widthPixels / Const.widthGridCount;
+        heightUnit = heightPixels / Const.heightGridCount;
 
         stage = new Stage(this,widthUnit,heightUnit);
 
         frameLayout.addView(stage);
-
     }
 }
