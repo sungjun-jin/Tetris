@@ -28,8 +28,8 @@ public class MainActivity extends AppCompatActivity {
         widthPixels = metrics.widthPixels;
         heightPixels = metrics.heightPixels;
 
-        widthUnit = widthPixels / Const.widthGridCount;
-        heightUnit = heightPixels / Const.heightGridCount;
+        widthUnit = widthPixels / Const.WIDTH_GRID_COUNT;
+        heightUnit = heightPixels / Const.HEIGHT_GRID_COUNT;
 
         stage = new Stage(this,widthUnit,heightUnit);
 
