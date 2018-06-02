@@ -5,7 +5,7 @@ import java.util.Random;
 public class BlockFactory {
 
     //블럭, 4차원 배열에 저장
-    private final static int blocks[][][][] = {
+    private static int[][][][] blocks = {
             {
                     {
                             {0, 1, 0, 0},
@@ -13,6 +13,7 @@ public class BlockFactory {
                             {0, 1, 0, 0},
                             {0, 1, 0, 0}
                     },
+
                     {
                             {1, 1, 1, 1},
                             {0, 0, 0, 0},
@@ -136,16 +137,15 @@ public class BlockFactory {
             }
     };
 
-    public static Block newBlock() {
-
+    public int getRandom() {
         Random random = new Random();
-        int index = random.nextInt(7);
-
-        int block[][][] = blocks[index];
-
-        return new Block(block);
-
+        return  random.nextInt(7);
     }
 
-
+    //랜덤한 블럭을 가지고 오는 함수
+    public Block newBlock() {
+        int index = getRandom();
+        int block[][][] = blocks[index];
+        return new Block(block,index);
+    }
 }

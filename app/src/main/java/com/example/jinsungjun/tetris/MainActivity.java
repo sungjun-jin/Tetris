@@ -8,13 +8,14 @@ import android.widget.FrameLayout;
 public class MainActivity extends AppCompatActivity {
 
     float widthPixels = 0;
-    float heightPixels = 0;
-
-    float widthUnit;
-    float heightUnit;
+    float unit;
 
     FrameLayout frameLayout;
+
+    AllMap allMap;
     Stage stage;
+    Preview preview;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,15 +25,22 @@ public class MainActivity extends AppCompatActivity {
         frameLayout = findViewById(R.id.frameLayout);
 
         DisplayMetrics metrics = getResources().getDisplayMetrics();
-
         widthPixels = metrics.widthPixels;
-        heightPixels = metrics.heightPixels;
+        unit = widthPixels / Const.WIDTH_GRID_COUNT;
 
-        widthUnit = widthPixels / Const.WIDTH_GRID_COUNT;
-        heightUnit = heightPixels / Const.HEIGHT_GRID_COUNT;
+        allMap = new AllMap(this,unit);
+        stage = new Stage(this,unit);
+        preview = new Preview(this,unit);
 
-        stage = new Stage(this,widthUnit,heightUnit);
+        frameLayout.addView(allMap);
 
-        frameLayout.addView(stage);
+        init();
+
+    }
+
+    //처음 테트리스 맵 초기화
+    public void init() {
+
+        allMap.initMap();
     }
 }
