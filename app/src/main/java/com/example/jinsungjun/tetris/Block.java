@@ -1,6 +1,6 @@
 package com.example.jinsungjun.tetris;
 
-import android.graphics.Color;
+
 
 public class Block {
 
@@ -19,7 +19,7 @@ public class Block {
     public Block(int block[][][], int index) {
         this.block = block;
         this.index = index;
-        this.x = 4; //Stage의 정 가운데에 처음 블럭 생성
+        this.x = 3; //Stage의 정 가운데에 처음 블럭 생성
         this.y = 0;
         this.rotation = 0;
         this.rotationLimit = block.length;
@@ -29,11 +29,15 @@ public class Block {
     public void rotate() {
         //rotation의 증가 : 블럭의 회전
         rotation = rotation + 1;
-        if (rotation > rotationLimit) {
+        if (rotation >= rotationLimit) {
 
             //rotation의 회전가능한 갯수를 초과하면
             rotation = 0;
         }
+    }
+
+    public int[][] currentBlock(){
+        return block[rotation];
     }
 
     public void down() {
